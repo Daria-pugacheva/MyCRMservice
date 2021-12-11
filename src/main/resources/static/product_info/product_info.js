@@ -10,5 +10,14 @@ angular.module('crm-front').controller('productController', function ($scope, $h
         });
     };
 
+    $scope.createBonusLetter = function (address) {
+        $http ({
+            url: contextPath + 'api/v1/letters/' + address + '/2',
+            method: 'GET',
+        }).then(function (response) {
+            $scope.bonusletter = response.data;
+        });
+    };
+
 
 });

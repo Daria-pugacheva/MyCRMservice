@@ -11,5 +11,14 @@ angular.module('crm-front').controller('birthdayController', function ($scope, $
             });
         };
 
+    $scope.createLetter = function (address) {
+        $http ({
+            url: contextPath + 'api/v1/letters/' + address + '/1',
+            method: 'GET',
+        }).then(function (response) {
+            $scope.letter = response.data;
+        });
+    };
+
     $scope.loadCustomers();
 });
