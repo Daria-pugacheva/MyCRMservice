@@ -41,8 +41,8 @@ values ('Bread', 25),
        ('Milk', 80),
        ('Cheese', 100);
 insert into customers (name, birth_day, birth_month, birth_year, email)
-values ('Bob', 1, 1, 2000, 'bob_2000@gmail.com'),
-       ('Bill', 2, 2, 2001, 'bill_2001@gmail.com');
+values ('Bob', 15, 12, 2000, 'bob_2000@gmail.com'),
+       ('Bill', 15, 12, 2001, 'bill_2001@gmail.com');
 insert into orders (customer_id, total_price)
 values (1, 130),
        (2, 200);

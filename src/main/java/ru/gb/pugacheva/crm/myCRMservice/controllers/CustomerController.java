@@ -1,6 +1,7 @@
 package ru.gb.pugacheva.crm.myCRMservice.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.hibernate.type.LocalDateType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.gb.pugacheva.crm.myCRMservice.dtos.CustomerDto;
 import ru.gb.pugacheva.crm.myCRMservice.services.CustomerService;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -17,9 +20,11 @@ import java.util.List;
 public class CustomerController {
     private final CustomerService customerService;
 
-    @GetMapping("/{day}/{month}")
-    //TODO: доработать динамическую передачу текущей даты сразу в методе контроллера, а не с фронта
-    public List<CustomerDto> findAlByBirthday(@PathVariable int day, @PathVariable int month) {
+    @GetMapping("/birthday")
+    public List<CustomerDto> findAlByBirthday() {
+        LocalDate date = LocalDate.now();
+        int day = date.getDayOfMonth();
+        int month = date.getMonthValue();
         return customerService.findAllByBirthday(day, month);
     }
 

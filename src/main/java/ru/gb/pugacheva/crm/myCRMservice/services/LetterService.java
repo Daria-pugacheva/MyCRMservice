@@ -9,19 +9,23 @@ import ru.gb.pugacheva.crm.myCRMservice.helpers.LetterFactory;
 @Service
 public class LetterService {
     
-    public Letter createLetter (String address, int type){
+    public Letter createLetter (String address, LetterType type){
         return createFactory(type).createLetter(address);
     }
 
-    private LetterFactory createFactory (int type){
+    private LetterFactory createFactory (LetterType type){
         switch (type) {
-            case 1:
+            case BIRTH:
                 return new BirthdayLetterFactory();
-            case 2:
+            case BONUS:
                 return new BonusLetterFactory();
             default:
                 throw new IllegalArgumentException("Генерация писем такого типа не поддерживается");
         }
+    }
+
+    public enum LetterType{
+        BIRTH, BONUS
     }
 
 }

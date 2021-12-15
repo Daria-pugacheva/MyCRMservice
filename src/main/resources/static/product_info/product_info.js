@@ -12,7 +12,7 @@ angular.module('crm-front').controller('productController', function ($scope, $h
 
     $scope.createBonusLetter = function (address) {
         $http ({
-            url: contextPath + 'api/v1/letters/' + address + '/2',
+            url: contextPath + 'api/v1/letters/' + address + '/BONUS',
             method: 'GET',
         }).then(function (response) {
             $scope.bonusletter = response.data;

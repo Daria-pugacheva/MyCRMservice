@@ -16,7 +16,7 @@ public class LetterController {
     private final LetterService letterService;
 
     @GetMapping("/{address}/{type}")
-    public Letter createLetter(@PathVariable String address, @PathVariable int type) {
+    public Letter createLetter(@PathVariable String address, @PathVariable LetterService.LetterType type) {
         return letterService.createLetter(address, type);
 
     }

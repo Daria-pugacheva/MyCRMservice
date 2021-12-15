@@ -3,7 +3,7 @@ angular.module('crm-front').controller('birthdayController', function ($scope, $
 
     $scope.loadCustomers = function () {
             $http ({
-                url: contextPath + 'api/v1/customers/1/1',
+                url: contextPath + 'api/v1/customers/birthday',
                 method: 'GET',
             }).then(function (response) {
                // console.log(response);
@@ -13,7 +13,7 @@ angular.module('crm-front').controller('birthdayController', function ($scope, $
 
     $scope.createLetter = function (address) {
         $http ({
-            url: contextPath + 'api/v1/letters/' + address + '/1',
+            url: contextPath + 'api/v1/letters/' + address + '/BIRTH',
             method: 'GET',
         }).then(function (response) {
             $scope.letter = response.data;
