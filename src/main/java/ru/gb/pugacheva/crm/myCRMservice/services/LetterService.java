@@ -2,15 +2,13 @@ package ru.gb.pugacheva.crm.myCRMservice.services;
 
 import org.springframework.stereotype.Service;
 import ru.gb.pugacheva.crm.myCRMservice.dtos.Letter;
-import ru.gb.pugacheva.crm.myCRMservice.helpers.BirthdayLetterFactory;
-import ru.gb.pugacheva.crm.myCRMservice.helpers.BonusLetterFactory;
-import ru.gb.pugacheva.crm.myCRMservice.helpers.LetterFactory;
+import ru.gb.pugacheva.crm.myCRMservice.helpers.*;
 
 @Service
 public class LetterService {
     
-    public Letter createLetter (String address, LetterType type){
-        return createFactory(type).createLetter(address);
+    public Letter createLetter (String address, String phone, LetterType type){
+        return createFactory(type).createLetter(address, phone);
     }
 
     private LetterFactory createFactory (LetterType type){
@@ -22,6 +20,12 @@ public class LetterService {
             default:
                 throw new IllegalArgumentException("Генерация писем такого типа не поддерживается");
         }
+    }
+
+    public void sendLetter(Letter letter) {
+        SendingLetters sendingLetters = new StandartEmailLetterSender();
+        sendingLetters = new ViberLetterSender(sendingLetters);
+        sendingLetters.sendLetter(letter);
     }
 
     public enum LetterType{
